@@ -1,30 +1,29 @@
 package com.yashveer.hospitalManagement.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.yashveer.hospitalManagement.entity.type.BloodGroupType;
+import jakarta.persistence.*;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Entity
+@ToString
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, length = 40)
     private String name;
-    private LocalDate birthdate;
+
+    private LocalDate birthDate;
+
+    @Column(unique = true, nullable = false)
     private String email;
+
     private String gender;
 
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", birthdate=" + birthdate +
-                ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
-                '}';
-    }
+    @Enumerated(EnumType.STRING)
+    private BloodGroupType bloodGroup;
+
 }

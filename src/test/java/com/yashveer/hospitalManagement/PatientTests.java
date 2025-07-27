@@ -1,6 +1,7 @@
 package com.yashveer.hospitalManagement;
 
 import com.yashveer.hospitalManagement.entity.Patient;
+import com.yashveer.hospitalManagement.entity.type.BloodGroupType;
 import com.yashveer.hospitalManagement.repository.PatientRepository;
 import com.yashveer.hospitalManagement.service.PatientService;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,21 @@ public class PatientTests {
 
     @Test
     public void testTransactionMethods(){
-        Patient patient  = patientService.getPatientById(1L);
-        System.out.println(patient);
+//        Patient patient  = patientService.getPatientById(1L);
+//        System.out.println(patient);
+//        Patient patient = patientRepository.findByName("Diya Patel");
+//        System.out.println(patient);
+
+//        List<Patient> patientlist = patientRepository.findByNameContainingOrderByIdDesc("Di");
+//        for(Patient patient : patientlist)
+//        {
+//            System.out.println(patient);
+//        }
+        List<Patient>patientlist = patientRepository.findByBloodGroup(BloodGroupType.A_POSITIVE);
+        for(Patient patient : patientlist)
+        {
+            System.out.println(patient);
+        }
+
     }
 }
